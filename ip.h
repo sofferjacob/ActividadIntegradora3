@@ -3,29 +3,34 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Ip {
 public:
     Ip(std::string);
-    bool operator >(Ip&);
-    bool operator >=(Ip&);
-    bool operator <(Ip&);
-    bool operator <=(Ip&);
-    bool operator ==(Ip&);
-    bool operator !=(Ip&);
-    const std::string address;
-    //private:
+    bool operator >(const Ip&);
+    bool operator >=(const Ip&);
+    bool operator <(const Ip&);
+    bool operator <=(const Ip&);
+    bool operator ==(const Ip&);
+    bool operator !=(const Ip&);
+    std::string address;
+private:
     std::vector<int> octets;
 };
 
 Ip::Ip(std::string ip) : address(ip) {
-    octets.push_back(stoi(ip.substr(0, 2)));
-    octets.push_back(stoi(ip.substr(3, 2)));
-    octets.push_back(stoi(ip.substr(6, 3)));
-    octets.push_back(stoi(ip.substr(10, 3)));
+    std::cout << "ip: " << ip << std::endl;
+    int lastI = 0;
+    for (int i = 0; i < ip.length(); i++) {
+        if (ip[i] == '.') {
+            octets.push_back(stoi(ip.substr(lastI + 1, i - lastI)));
+            lastI = i;
+        }
+    }
 }
 
-bool Ip::operator >(Ip& other) {
+bool Ip::operator >(const Ip& other) {
     for (int i = 0; i < 4; i++) {
         if (octets[i] > other.octets[i]) return true;
         if (octets[i] != other.octets[i]) return false;
@@ -33,7 +38,7 @@ bool Ip::operator >(Ip& other) {
     return false;
 }
 
-bool Ip::operator >=(Ip& other) {
+bool Ip::operator >=(const Ip& other) {
     for (int i = 0; i < 4; i++) {
         if (octets[i] >= other.octets[i]) return true;
         if (octets[i] != other.octets[i]) return false;
@@ -41,7 +46,7 @@ bool Ip::operator >=(Ip& other) {
     return false;
 }
 
-bool Ip::operator <(Ip& other) {
+bool Ip::operator <(const Ip& other) {
     for (int i = 0; i < 4; i++) {
         if (octets[i] < other.octets[i]) return true;
         if (octets[i] != other.octets[i]) return false;
@@ -49,7 +54,7 @@ bool Ip::operator <(Ip& other) {
     return false;
 }
 
-bool Ip::operator <=(Ip& other) {
+bool Ip::operator <=(const Ip& other) {
     for (int i = 0; i < 4; i++) {
         if (octets[i] <= other.octets[i]) return true;
         if (octets[i] != other.octets[i]) return false;
@@ -57,11 +62,11 @@ bool Ip::operator <=(Ip& other) {
     return false;
 }
 
-bool Ip::operator ==(Ip& other) {
+bool Ip::operator ==(const Ip& other) {
     return address == other.address;
 }
 
-bool Ip::operator !=(Ip& other) {
+bool Ip::operator !=(const Ip& other) {
     return address != other.address;
 }
 
