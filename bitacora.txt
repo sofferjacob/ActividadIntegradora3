@@ -42,7 +42,7 @@ Sep 18 16:30:24 10.15.187.233:4667 Failed password for illegal user guest
 Jun 4 5:20:02 10.15.172.254:5911 Failed password for illegal user guest
 Jun 28 11:27:14 10.15.180.231:4843 Failed password for illegal user test
 Jun 6 5:20:31 10.15.172.245:4254 Failed password for illegal user test
-Oct 27 16:20:18 10.15.171.250:6868 Illegal user    
+Oct 27 16:20:18 10.15.171.250:6868 Illegal user
 Aug 9 21:51:56 10.15.186.237:5662 Failed password for illegal user test
 Jun 11 14:33:47 10.15.178.233:6534 Failed password for admin  
 Aug 6 11:22:56 10.15.179.243:4098 Failed password for root  
