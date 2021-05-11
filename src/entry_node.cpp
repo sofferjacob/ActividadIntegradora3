@@ -1,40 +1,12 @@
 /*
-entry_node.h
-Stores an entry from
-the log.
+entry_node.cpp
+Entry Node methods
+definition
 Jacobo Soffer | A01028653
 Modified: 10/05/21
 */
-#ifndef _ENTRY_NODE_H
-#define _ENTRY_NODE_H
-
-#include <vector>
-#include <string>
+#include "entry_node.h"
 #include <stdexcept>
-#include <iostream>
-#include "ip.h"
-
-class EntryNode {
-public:
-    // Takes the full entry as a string
-    EntryNode(std::string);
-    // Returns the stored IP address
-    Ip getIp();
-    // Returns the full entry as a string
-    std::string getEntry();
-    // Returns a vector containing the parts of the entry
-    std::vector<std::string> getParts();
-    // Returns true if this object's IP addres is greater than
-    // than the rarg.
-    bool operator >(EntryNode&);
-    // Returns true if this object's IP addres is lesser than
-    // than the rarg.
-    bool operator <(EntryNode&);
-private:
-    std::vector<std::string> parts;
-    std::string entry;
-    Ip ip;
-};
 
 EntryNode::EntryNode(std::string e) : entry(e) {
     int strPos = entry.find(" ");
@@ -70,5 +42,3 @@ bool EntryNode::operator >(EntryNode& other) {
 bool EntryNode::operator <(EntryNode& other) {
     return ip < other.ip;
 }
-
-#endif
